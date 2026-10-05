@@ -23,17 +23,17 @@ import {
   getHorariosMisas, 
   getHorariosConfesiones,
   getHorariosDespacho,
-  getAvisosParroquiales, 
+  //getAvisosParroquiales, 
   getInformacionContacto 
 } from "@/services/strapi";
 
 export default async function HomePage() {
-  const [grupos, misas, confesiones, despachos, avisos, info] = await Promise.all([
+  const [grupos, misas, confesiones, despachos, /*avisos,*/ info] = await Promise.all([
     getGruposParroquiales(),
     getHorariosMisas(),
     getHorariosConfesiones(),
     getHorariosDespacho(),
-    getAvisosParroquiales(),
+    //getAvisosParroquiales(),
     getInformacionContacto(),
   ]);
 
@@ -403,7 +403,7 @@ export default async function HomePage() {
       </section>
 
       {/* 4. SECCIÓN DE AVISOS PARROQUIALES */}
-      {avisos.length > 0 && (
+      {/* {avisos.length > 0 && (
         <section className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="mb-8">
             <div className="flex items-center gap-2 text-parroquia-burgundy-700 font-semibold text-xs uppercase tracking-wider mb-2">
@@ -453,7 +453,7 @@ export default async function HomePage() {
             ))}
           </div>
         </section>
-      )}
+      )} */}
 
       {/* 5. BANNER DE CONTACTO Y DESPACHO */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6">
