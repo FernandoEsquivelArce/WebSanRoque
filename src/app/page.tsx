@@ -27,6 +27,8 @@ import {
   getInformacionContacto 
 } from "@/services/strapi";
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const [grupos, misas, confesiones, despachos, /*avisos,*/ info] = await Promise.all([
     getGruposParroquiales(),
