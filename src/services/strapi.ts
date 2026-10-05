@@ -218,22 +218,22 @@ export async function getHorariosDespacho(): Promise<HorarioDespacho[]> {
   }
 }
 
-// export async function getAvisosParroquiales(): Promise<AvisoParroquial[]> {
-//   try {
-//     const res = await fetch(`${STRAPI_URL}/api/avisos-parroquiales?populate=*`, {
-//       cache: 'no-store',
-//       headers: { 'Content-Type': 'application/json' },
-//     });
-//     if (!res.ok) return defaultAvisos;
-//     const text = await res.text();
-//     if (!text || text.trim() === '') return defaultAvisos;
-//     const data = JSON.parse(text);
-//     if (!data.data || !Array.isArray(data.data) || data.data.length === 0) return defaultAvisos;
-//     return defaultAvisos;
-//   } catch (error) {
-//     return defaultAvisos;
-//   }
-// }
+export async function getAvisosParroquiales(): Promise<AvisoParroquial[]> {
+  try {
+    const res = await fetch(`${STRAPI_URL}/api/avisos-parroquiales?populate=*`, {
+      cache: 'no-store',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (!res.ok) return defaultAvisos;
+    const text = await res.text();
+    if (!text || text.trim() === '') return defaultAvisos;
+    const data = JSON.parse(text);
+    if (!data.data || !Array.isArray(data.data) || data.data.length === 0) return defaultAvisos;
+    return defaultAvisos;
+  } catch (error) {
+    return defaultAvisos;
+  }
+}
 
 export async function getInformacionContacto(): Promise<ParroquiaInfo> {
   try {
