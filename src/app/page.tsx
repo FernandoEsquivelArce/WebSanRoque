@@ -379,12 +379,21 @@ export default async function HomePage() {
                     </p>
                   </div>
 
-                  <div className="space-y-1.5 border-t border-stone-100 pt-3 text-xs text-stone-500">
-                    <div className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-stone-400" />
-                      <span>{grupo.diaReunion} ({grupo.horaReunion})</span>
+                  {(grupo.diaReunion || (grupo.horaReunion && grupo.horaReunion.toLowerCase() !== "por definir")) && (
+                    <div className="space-y-1.5 border-t border-stone-100 pt-3 text-xs text-stone-500">
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-stone-400" />
+                        <span>
+                          {grupo.diaReunion}
+                          {grupo.horaReunion && grupo.horaReunion.toLowerCase() !== "por definir"
+                            ? grupo.diaReunion
+                              ? ` (${grupo.horaReunion})`
+                              : grupo.horaReunion
+                            : ""}
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 <div className="p-4 bg-stone-50 border-t border-stone-100">

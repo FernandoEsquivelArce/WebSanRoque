@@ -302,10 +302,19 @@ export function GruposView({ initialGrupos }: GruposViewProps) {
                     <Users className="w-4 h-4 text-stone-400 shrink-0" />
                     <span className="truncate"><strong>Dirigido a:</strong> {grupo.destinatarios}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-stone-400 shrink-0" />
-                    <span><strong>Sesión:</strong> {grupo.diaReunion} ({grupo.horaReunion})</span>
-                  </div>
+                  {(grupo.diaReunion || (grupo.horaReunion && grupo.horaReunion.toLowerCase() !== "por definir")) && (
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-stone-400 shrink-0" />
+                      <span>
+                        <strong>Sesión:</strong> {grupo.diaReunion}
+                        {grupo.horaReunion && grupo.horaReunion.toLowerCase() !== "por definir"
+                          ? grupo.diaReunion
+                            ? ` (${grupo.horaReunion})`
+                            : grupo.horaReunion
+                          : ""}
+                      </span>
+                    </div>
+                  )}
                   {grupo.duracion && (
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4 text-stone-400 shrink-0" />
@@ -401,14 +410,23 @@ export function GruposView({ initialGrupos }: GruposViewProps) {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-stone-50 p-4 rounded-2xl border border-stone-200/80">
+                {(selectedGrupo.diaReunion || (selectedGrupo.horaReunion && selectedGrupo.horaReunion.toLowerCase() !== "por definir")) && (
+                  <div className="space-y-1">
+                    <span className="text-xs text-stone-400 font-medium block">Día y Hora de Clase</span>
+                    <p className="text-sm font-semibold text-stone-800">
+                      {[
+                        selectedGrupo.diaReunion,
+                        selectedGrupo.horaReunion && selectedGrupo.horaReunion.toLowerCase() !== "por definir"
+                          ? selectedGrupo.horaReunion
+                          : "",
+                      ]
+                        .filter(Boolean)
+                        .join(" • ")}
+                    </p>
+                  </div>
+                )}
                 <div className="space-y-1">
-                  <span className="text-xs text-stone-400 font-medium block">Día y Hora de Clase</span>
-                  <p className="text-sm font-semibold text-stone-800">
-                    {selectedGrupo.diaReunion} • {selectedGrupo.horaReunion}
-                  </p>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-xs text-stone-400 font-medium block">Sede y Salón</span>
+                  <span className="text-xs text-stone-400 font-medium block">Lugar</span>
                   <p className="text-sm font-semibold text-stone-800">
                     {selectedGrupo.lugarReunion}
                   </p>
