@@ -168,7 +168,7 @@ export function GruposView({ initialGrupos }: GruposViewProps) {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-stone-500 uppercase tracking-wider flex items-center gap-1">
               <Filter className="w-3.5 h-3.5 text-stone-500" />
-              <span>1. Área Pastoral / Gran Categoría:</span>
+              <span>1. Área Pastoral / Categoría:</span>
             </span>
             <span className="text-xs text-stone-400 font-medium">
               {filteredGrupos.length} {filteredGrupos.length === 1 ? "opción" : "opciones disponibles"}
